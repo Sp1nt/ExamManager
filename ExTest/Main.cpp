@@ -11,10 +11,18 @@ int main() {
 
 
 
-    FileSystem* folder;
-    FileSystem* file;
-    User* currentUser;
-    Disk* disk;
+    Disk disk("C:\\some_directory");
+
+    // Создаем объект класса File
+    File file("example.txt", "C:\\some_directory\\example.txt");
+
+    // Создаем объект класса Folder
+    Folder folder("my_folder", "C:\\some_directory\\my_folder");
+
+    // Создаем объект класса User
+    User currentUser("my_username", "my_password");
+
+
     bool isLoggedIn = false;
 
     size_t fileSize;
@@ -44,7 +52,7 @@ int main() {
                 cout << "Введите пароль: ";
                 cin >> password;
 
-                if (currentUser->login(username, password)) {
+                if (currentUser.login(username, password)) {
                     isLoggedIn = true;
                 }
                 else {
@@ -58,7 +66,7 @@ int main() {
                 cout << "Введите пароль: ";
                 cin >> password;
 
-                if (currentUser->createAccount(username, password)) {
+                if (currentUser.createAccount(username, password)) {
                     cout << "Регистрация успешна." << endl;
                     isLoggedIn = true;
                 }
@@ -104,7 +112,7 @@ int main() {
                 cout << "Введите имя папки: ";
                 cin >> name;
 
-                folder->createEntity(name);
+                folder.createEntity(name);
 
                 break;
             case 2:
@@ -112,7 +120,7 @@ int main() {
                 cout << "Введите путь папки: ";
                 cin >> path;
 
-                folder->deleteEntity(path);
+                folder.deleteEntity(path);
 
                 break;
             case 3:
@@ -123,7 +131,7 @@ int main() {
                 cout << "Введите новое имя папки: ";
                 cin >> name;
 
-                folder->renameEntity(path, name);
+                folder.renameEntity(path, name);
                 break;
             case 4:
                 cout << "Перенос папки > " << endl;
@@ -133,21 +141,21 @@ int main() {
                 cout << "Введите новый путь папки: ";
                 cin >> destinationPath;
 
-                folder->moveEntity(path, destinationPath);
+                folder.moveEntity(path, destinationPath);
                 break;
             case 5:
                 cout << "Создание файла > " << endl;
                 cout << "Введите имя файла: ";
                 cin >> name;
 
-                file->createEntity(name);
+                file.createEntity(name);
                 break;
             case 6:
                 cout << "Удаление файла > " << endl;
                 cout << "Введите путь файла: ";
                 cin >> path;
 
-                file->deleteEntity(path);
+                file.deleteEntity(path);
                 break;
             case 7:
                 cout << "Переименование файла > " << endl;
@@ -157,7 +165,7 @@ int main() {
                 cout << "Введите новое имя файла: ";
                 cin >> name;
 
-                file->renameEntity(path, name);
+                file.renameEntity(path, name);
                 break;
             case 8:
                 cout << "Перенос файла > " << endl;
@@ -167,14 +175,14 @@ int main() {
                 cout << "Введите новый путь файла: ";
                 cin >> destinationPath;
 
-                file->renameEntity(path, destinationPath);
+                file.renameEntity(path, destinationPath);
                 break;
             case 9:
                 cout << "Чтение файла > " << endl;
                 cout << "Введите путь файла: ";
                 cin >> path;
 
-                disk->readFromFile(path);
+                disk.readFromFile(path);
                 break;
             case 10:
                 cout << "Запись в файл > " << endl;
@@ -184,7 +192,7 @@ int main() {
                 cout << "Введите то что хотите ввести: ";
                 getline(cin, destinationPath);
 
-                disk->writeToFile(path, destinationPath);
+                disk.writeToFile(path, destinationPath);
                 break;
             case 11:
                 cout << "Показ размера файла > " << endl;
@@ -192,14 +200,14 @@ int main() {
                 cin >> path;
                 cout << "\n" << endl;
 
-                 fileSize = disk->getFileSize(path);
+                 fileSize = disk.getFileSize(path);
                 cout << "Размер файла: " << fileSize << " байт" << endl;
                 break;
             case 12:
                 cout << "Показ всех файлов и директорий > " << endl;
                 cout << "Введите путь папка: ";
                 cin >> path;
-                disk->listDirectory(path);
+                disk.listDirectory(path);
                 break;
             case 13:
                 cout << "Поиск по маске  \\ > " << endl;
@@ -209,7 +217,7 @@ int main() {
                 cout << "Введите маску: ";
                 wcin >> mask;
 
-                disk->findFilesByMask(pathh, mask);
+                disk.findFilesByMask(pathh, mask);
                 break;
             case 14:
                 isLoggedIn = false;

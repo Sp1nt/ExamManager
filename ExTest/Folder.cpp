@@ -1,6 +1,8 @@
 #include "Folder.h"
 
 
+
+
 Folder::Folder(const string& name, const string& path) : FileSystem(name, path) {}
 
 bool Folder::createEntity(const string& name) {

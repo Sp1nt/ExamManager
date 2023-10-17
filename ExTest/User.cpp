@@ -67,13 +67,3 @@ bool User::createAccount(const string& username, const string& password) {
         return false;
     }
 }
-
-
-
-
-
-
-
-void User::logout() {
-    cout << "ff";
-}

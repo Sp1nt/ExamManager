@@ -1,6 +1,8 @@
 #pragma once
-#include "File.h"
-#include "Folder.h"
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
 class User
 {
     string username;
@@ -12,8 +14,5 @@ public:
 
     // Метод для создания новой учетной записи
     bool createAccount(const string& username, const string& password);
-
-    // Метод для выхода из учетной записи
-    void logout();
 };
 
